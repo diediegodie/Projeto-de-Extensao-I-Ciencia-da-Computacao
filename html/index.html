@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Está Aprendendo: Você ou a IA?</title>
+    <meta name="description"
+        content="Guia prático para usar IA como copiloto do seu estudo: ciência, filosofia, prompts prontos para copiar e todas as fontes abertas para você conferir.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+</head>
+
+<body>
+    <!-- pagina 1 -->
+    <!-- HERO -->
+    <header class="hero-section">
+        <div class="container">
+            <!-- <div class="badge">Projeto de Extensão Universitária</div> -->
+            <h1>Quem Está Aprendendo: Você ou a IA?</h1>
+            <p class="intro-message">Este espaço foi criado para ajudar você a dominar o uso ativo da tecnologia nos seus estudos, estimulando sua autonomia e pensamento crítico.</p><br>
+            <p class="intro-message">Ao longo desta jornada, você descobrirá como a IA pode fortalecer sua aprendizagem sem substituir seu raciocínio. E, ao final, encontrará uma biblioteca prática de prompts de estudo criada para transformar qualquer inteligência artificial em uma ferramenta de apoio ao seu aprendizado, e não em uma substituta do seu pensamento.</p><br>
+            <p class="core-message"><strong>A questão não é usar ou não usar IA.</strong> A questão é <em>COMO</em>
+                usar.</p>
+            <p class="intro-message"><strong>Assista ao vídeo explicativo abaixo antes de prosseguir.</strong></p>
+        </div>
+    </header>
+
+    <section class="video-section">
+        <video controls controlsList="nodownload" preload="metadata" loading="lazy"
+            style="width:100%; max-width:800px; display:block; margin:auto;" oncontextmenu="return false;">
+            <source src="/stream/video/IA__Copiloto_ou_Muleta_.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento video.
+        </video>
+    </section>
+    <!-- Bloco de Transição para Página 2 -->
+    <div class="mensagem-final">
+        <p class="destaque">A teoria parece complexa? Vamos levar isso para um cenário que você provavelmente já conhece bem.</p>
+        <a href="/html/minecraft.html" class="btn-link">
+            Entrar no Modo Sobrevivência ➔
+        </a>
+    </div>
+    
+    <footer class="main-footer">
+        <p>© 2026 Projeto de Extensão I - Ciência da Computação - Universidade Anhanguera</p>
+        <p>Criado por Diego Rodriguez</p>
+    <p id="visitor-line" style="font-size:0.7rem;opacity:0.6;margin-top:6px;">Acessos: <span id="visitor-count">-</span></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"
+        integrity="sha384-zYPBGXwO4633CABX/5Spf6emCKUJCfoOkhOMYyxMsatqQZPnDblmmOewfjsIVWCM"
+        crossorigin="anonymous"></script>
+    <script src="../js/metrics.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/prompts.js"></script>
+    <script>
+      fetch('/stats')
+        .then(r => r.json())
+        .then(d => {
+          const el = document.getElementById('visitor-count');
+          if (el) el.textContent = d.total_visitas ?? '-';
+        })
+        .catch(() => {});
+    </script>
+</body>
+
+</html>

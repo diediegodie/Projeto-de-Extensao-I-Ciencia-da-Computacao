@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Está Aprendendo: Você ou a IA?</title>
+    <meta name="description"
+        content="Guia prático para usar IA como copiloto do seu estudo: ciência, filosofia, prompts prontos para copiar e todas as fontes abertas para você conferir.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+</head>
+
+<body>
+    <!-- página 6 -->
+    <section id="e-agora" class="content-section dark-bg">
+        <div class="container">
+            <!-- Cabeçalho do Desfecho -->
+            <div class="intro-desfecho" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+                <h2>O Que Fica na Sua Memória?</h2>
+                <p>A Inteligência Artificial não é inerentemente prejudicial ou benéfica. O impacto cognitivo final depende exclusivamente do papel que você escolhe desempenhar enquanto a ferramenta está ativa.</p>
+            </div>
+
+            <!-- Texto Enxugado de Fechamento -->
+            <div class="conceito-bloco" style="margin-bottom: 40px;">
+                <p>Os mecanismos biológicos da aprendizagem humana mudam muito mais devagar do que as atualizações dos modelos de linguagem. Atenção sustentada, recuperação de memória e resolução ativa de problemas continuam exigindo esforço. Quanto mais capaz se torna a tecnologia, maior é a tentação de terceirizar o pensamento, mas também maior é o potencial de usá-la para expandir sua inteligência. A pergunta central nunca será o que a IA consegue fazer, mas sim: <strong>o que você continua fazendo enquanto utiliza a IA?</strong></p>
+            </div>
+
+            <!-- Comparativo Direto: Copiloto vs Piloto Automático -->
+            <h3 style="text-align: center; margin-bottom: 32px; color: var(--texto-primario);">Mapeando Seus Hábitos</h3>
+            <div class="duplo-grid" style="margin-bottom: 40px;">
+                <!-- Coluna Copiloto -->
+                <div class="mode-card survival">
+                    <h4 style="color: var(--neon-verde); margin-bottom: 16px; font-size: 1.2rem;">IA como Copiloto</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--texto-secundario); font-size: 0.95rem; line-height: 1.8;">
+                        <li>• Você tenta resolver os problemas antes de solicitar suporte.</li>
+                        <li>• Você pede pistas estruturais, analogias e perguntas guiadas.</li>
+                        <li>• Você revisa criticamente as respostas e checa os dados.</li>
+                        <li>• Você se mantém como o autor e tomador de decisão final.</li>
+                    </ul>
+                </div>
+
+                <!-- Coluna Piloto Automático -->
+                <div class="mode-card creative">
+                    <h4 style="color: var(--neon-vermelho); margin-bottom: 16px; font-size: 1.2rem;">IA como Piloto Automático</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--texto-secundario); font-size: 0.95rem; line-height: 1.8;">
+                        <li>• Você exige respostas e códigos completos imediatamente.</li>
+                        <li>• Você aceita e copia as conclusões sem realizar checagens.</li>
+                        <li>• Você realiza entregas de conteúdos que não saberia explicar.</li>
+                        <li>• Você evita a fricção mental diante da primeira dificuldade.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Conclusão Prática dos Benefícios Ativos -->
+            <div class="conceito-bloco" style="margin-bottom: 48px;">
+                <p>Quando você assume o controle como copiloto, colhe benefícios cognitivos reais: acelera feedbacks, personaliza explicações para o seu ritmo de aprendizado, estimula a curiosidade científica e desenvolve o pensamento metacognitivo.</p>
+            </div>
+
+            <!-- Botão de Transição Narrativa para o Laboratório Prático -->
+            <div class="mensagem-final">
+                <p class="destaque">Com a consciência alinhada, você está pronto para transformar esses conceitos em ações diárias. Vamos equipar seu navegador com os comandos certos.</p>
+                <a href="/html/prompts.html" class="btn-link">
+                    Acessar o Laboratório de Prompts Socráticos ➔
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="main-footer">
+    <p>© 2026 Projeto de Extensão I - Ciência da Computação - Universidade Anhanguera</p>
+    <p>Criado por Diego Rodriguez</p>
+    <p id="visitor-line" style="font-size:0.7rem;opacity:0.6;margin-top:6px;">Acessos: <span id="visitor-count">-</span></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"
+    integrity="sha384-zYPBGXwO4633CABX/5Spf6emCKUJCfoOkhOMYyxMsatqQZPnDblmmOewfjsIVWCM"
+    crossorigin="anonymous"></script>
+    <script src="../js/metrics.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/prompts.js"></script>
+    <script>
+      fetch('/stats')
+        .then(r => r.json())
+        .then(d => {
+          const el = document.getElementById('visitor-count');
+          if (el) el.textContent = d.total_visitas ?? '-';
+        })
+        .catch(() => {});
+    </script>
+</body>
+</html>

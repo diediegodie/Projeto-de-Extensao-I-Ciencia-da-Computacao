@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Está Aprendendo: Você ou a IA?</title>
+    <meta name="description"
+        content="Guia prático para usar IA como copiloto do seu estudo: ciência, filosofia, prompts prontos para copiar e todas as fontes abertas para você conferir.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+</head>
+
+<body>
+    <!-- página 7 -->
+        <!-- 8 – BIBLIOTECA DE PROMPTS (formato: abas colapsáveis com cópia) -->
+        <section id="prompts" class="content-section">
+            <div class="container">
+                <!-- Cabeçalho e Introdução Teórica Enxugada -->
+                <div class="intro-prompts" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+                    <h2>Central de Prompts: Missões do Estudante</h2>
+                    <p>Um prompt socrático instrui a inteligência artificial a agir como mentora. Em vez de entregar respostas prontas, ela aplica restrições rígidas para guiar seu raciocínio, gerando as dificuldades desejáveis que consolidam o aprendizado. Abra a missão desejada, copie o comando e cole no chat de sua preferência.</p>
+                    <p style="margin-top: 16px; font-size: 1.05rem; color: var(--texto-secundario);"><strong>24 prompts organizados em 8 missões de aprendizagem.</strong> Escolha uma missão, copie o prompt e transforme a IA em uma ferramenta de aprendizagem ativa.</p>
+                </div>
+
+                <div class="conceito-bloco" style="margin-bottom: 32px; background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px;">
+                    <h3 style="color: var(--neon-ciano); margin-bottom: 16px; font-size: 1.3rem;">Não sabe por onde começar?</h3>
+                    <p><strong>Sou do Ensino Médio →</strong> use <strong>3.2</strong>, <strong>5.1</strong> e <strong>6.1</strong></p>
+                    <p><strong>Estou escrevendo trabalhos →</strong> use <strong>1.2</strong>, <strong>2.1</strong> e <strong>8.1</strong></p>
+                    <p><strong>Quero estudar com IA sem ficar dependente →</strong> use <strong>5.2</strong>, <strong>7.1</strong> e <strong>7.4</strong></p>
+                </div>
+
+                <div class="prompts-lista">
+
+                    <!-- MISSÃO 1: TUTORES SOCRÁTICOS (Ciências e Escrita) -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">1. Tutores Socráticos (Para Aprender de Verdade)</h3>
+                        
+                        <details class="prompt-box">
+                            <summary><strong>1.1 Mentor de Ciências Exatas e Engenharia</strong></summary>
+                            <p>Instrui a IA a atuar como professora de exatas, proibindo o fornecimento de respostas diretas.</p>
+                            <pre><code>Atue como um tutor socrático especialista em [mudar para sua matéria, ex: Álgebra Linear]. Regras obrigatórias: 1. NUNCA dê a resposta final nem o resultado numérico do problema. 2. Faça no máximo uma pergunta por resposta, validando uma etapa do raciocínio de cada vez. 3. Se eu errar um cálculo, não corrija; faça uma pergunta indutiva para eu perceber a falha. Enunciado: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>1.2 Orientador de Redação e Ciências Humanas</strong></summary>
+                            <p>Força a IA a atuar como banca examinadora de escrita acadêmica sem reescrever seus parágrafos.</p>
+                            <pre><code>Atue como um orientador socrático de escrita. Regras: 1. Não escreva, não reescreva e não resuma nenhuma frase por mim. 2. Leia o rascunho fornecido e faça perguntas que apontem lacunas de argumentação ou contradições teóricas. 3. Peça que eu defenda minha tese com evidências externas. Rascunho: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>1.3 Andaime Pedagógico Avançado (Versão JSON)</strong></summary>
+                            <p>Comando estruturado para gerar saídas pedagógicas rígidas de scaffolding.</p>
+                            <pre><code>Você é um agente de suporte pedagógico estruturado. Restrinja suas saídas estritamente para o formato JSON a seguir, avaliando minhas respostas sem dar resoluções prontas: { "analise_de_equivocos": "Identificar falhas lógicas do aluno sem dar a resposta", "proxima_pergunta_guiada": "Pergunta para avançar o nível cognitivo do aluno", "status": "EM_ANDAMENTO" } Tema: [escreva aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 2: INVESTIGAÇÃO EPISTÊMICA (Antigo Kit do Detetive Automatizado) -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">2. Investigação Epistêmica (Filtro Antialucinação)</h3>
+                        
+                        <details class="prompt-box">
+                            <summary><strong>2.1 O Verificador de Fontes Primárias</strong></summary>
+                            <p>Obriga a IA a isolar e auditar dados, links, livros ou nomes citados em uma resposta anterior.</p>
+                            <pre><code>Examine o texto fornecido sob a ótica da vigilância epistêmica. 1. Isole e liste todas as estatísticas, leis, datas, links ou nomes de especialistas citados. 2. Classifique o risco de alucinação de cada dado. 3. Forneça quais fontes primárias oficiais ou bases acadêmicas indexadas eu devo consultar para validar cada informação. Texto: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>2.2 O Advogado do Diabo</strong></summary>
+                            <p>Força a ferramenta a contra-argumentar e quebrar a confiança excessiva de uma tese.</p>
+                            <pre><code>Assuma o papel de um parecerista acadêmico rigoroso e contradiga a afirmação fornecida. Apresente as principais críticas científicas, limitações metodológicas e debates históricos que relativizam ou refutam essa visão. Não concorde comigo em nenhum momento; force-me a defender minha posição. Tese: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>2.3 Auditor de Linha de Raciocínio</strong></summary>
+                            <p>Comando para rastrear falhas lógicas internas e expor o nível de incerteza da resposta.</p>
+                            <pre><code>Analise sua própria resposta anterior com distanciamento crítico. 1. Explique detalhadamente o raciocínio matemático ou conceitual que sustenta sua conclusão. 2. Identifique quais trechos podem induzir ao erro ou contêm generalizações. 3. Aponte em quais conceitos desse tema você opera com menor grau de certeza estatística.</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 3: RECUPERAÇÃO ATIVA E REVISÃO PROGRESIVA -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">3. Recuperação Ativa e Memorização</h3>
+                        
+                        <details class="prompt-box">
+                            <summary><strong>3.1 Rascunho Primeiro, IA Depois (Combate ao Descarregamento)</strong></summary>
+                            <p>Usa seu texto escrito de memória para mapear pontos cegos do seu cérebro.</p>
+                            <pre><code>Escrevi um rascunho puramente de memória para forçar a recuperação de informações. Atue como avaliador: 1. Indique quais conexões lógicas importantes eu esqueci de fazer. 2. Aponte conceitos que ficaram confusos, sem reescrever o texto por mim. 3. Faça 3 perguntas provocativas para eu expandir a profundidade do tema. Rascunho: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>3.2 Gerador de Simulados Progressivos (Taxonomia de Bloom)</strong></summary>
+                            <p>Cria um quiz socrático interativo que aumenta a dificuldade conforme você acerta.</p>
+                            <pre><code>Quero testar meu conhecimento em [assunto]. Crie um simulado progressivo de 5 perguntas seguindo as regras: 1. Envie apenas UMA pergunta por vez e aguarde minha resposta. 2. Se eu acertar, aumente a complexidade cognitiva da próxima questão (subindo na Taxonomia de Bloom). 3. Se eu errar, dê uma pista socrática e mantenha o nível.</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>3.3 O Construtor de Analogias Inversas</strong></summary>
+                            <p>Usa exemplos cotidianos para testar se você realmente entendeu a matéria.</p>
+                            <pre><code>Explique o conceito de [inserir assunto] construindo uma analogia imersiva com elementos do cotidiano (como culinária, jogos ou esportes), sem usar termos técnicos. Em seguida, solicite que eu crie uma analogia complementar e avalie se meu raciocínio foi correto ou se a analogia quebrou.</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 4: ENGENHARIA REVERSA DE QUESTÕES -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">4. Engenharia Reversa de Questões</h3>
+                        
+                        <details class="prompt-box">
+                            <summary><strong>4.1 Desconstrução de Gabarito Comentado</strong></summary>
+                            <p>Comando para entender os distratores e a lógica de elaboração de uma questão oficial.</p>
+                            <pre><code>Analise a questão de exame fornecida. Não me dê o gabarito. 1. Explique qual é a habilidade cognitiva exata que esta pergunta está testando. 2. Analise os distratores (alternativas erradas) e explique qual erro de interpretação cada um deles tenta explorar. 3. Me dê uma dica conceitual para eu resolver sozinho. Questão: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>4.2 O Interrogador de Casos Práticos</strong></summary>
+                            <p>Ideal para matérias que exigem diagnósticos ou estudos de caso baseados em cenários reais.</p>
+                            <pre><code>Vou te apresentar um estudo de caso. Atue como um entrevistador técnico: faça perguntas passo a passo para avaliar como eu estruturo o diagnóstico, quais variáveis eu priorizo e quais soluções proponho. Conduza o debate enviando uma pergunta por vez, desafiando minhas decisões de projeto. Caso: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 5: METACOGNIÇÃO E AUTODIAGNÓSTICO -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">5. Metacognição e Autodiagnóstico</h3>
+
+                        <details class="prompt-box">
+                            <summary><strong>5.1 Fiscal de Confiança</strong></summary>
+                            <p>Ensina o estudante a monitorar o próprio aprendizado, distinguindo o que realmente sabe do que apenas acredita saber.</p>
+                            <pre><code>Vou explicar um assunto que estou estudando. Sua função não é corrigir nem complementar imediatamente minha explicação. Primeiro, identifique quais partes demonstram compreensão sólida e quais parecem estar baseadas em suposições ou incertezas. Em seguida, faça perguntas para me ajudar a distinguir entre o que realmente sei e o que apenas acredito saber. Tema: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>5.2 Caçador de Lacunas</strong></summary>
+                            <p>Identifica etapas ausentes e relações não mencionadas no raciocínio do estudante.</p>
+                            <pre><code>Analise minha explicação sobre o tema fornecido. Não acrescente conteúdo novo. Sua tarefa é identificar quais etapas do raciocínio estão ausentes, quais relações importantes não foram mencionadas e quais perguntas ainda precisam ser respondidas para que a explicação esteja completa. Explicação: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>5.3 Diário de Aprendizagem</strong></summary>
+                            <p>Facilita a reflexão metacognitiva sobre o estudo do dia, estimulando o autodiagnóstico.</p>
+                            <pre><code>Atue como um facilitador de reflexão metacognitiva. Depois que eu relatar o que estudei hoje, conduza uma breve revisão perguntando: 1. O que aprendi? 2. O que ainda não compreendi completamente? 3. O que mais me confundiu? 4. Qual será meu próximo passo de estudo? Não forneça respostas; apenas estimule reflexão.</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 6: MÉTODO FEYNMAN E APRENDIZAGEM POR EXPLICAÇÃO -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">6. Método Feynman e Aprendizagem por Explicação</h3>
+
+                        <details class="prompt-box">
+                            <summary><strong>6.1 Explique Como Se Eu Tivesse 12 Anos</strong></summary>
+                            <p>Avalia se uma explicação é compreensível para leigos, identificando trechos excessivamente técnicos.</p>
+                            <pre><code>Vou tentar explicar um conceito complexo com palavras simples. Sua função é avaliar se minha explicação pode ser compreendida por alguém sem conhecimento prévio do assunto. Identifique trechos excessivamente técnicos e faça perguntas para que eu simplifique a explicação sem perder precisão. Conceito: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>6.2 Detector de Jargões</strong></summary>
+                            <p>Identifica termos técnicos e jargões usados sem explicação adequada no texto do estudante.</p>
+                            <pre><code>Analise meu texto e identifique termos técnicos, expressões acadêmicas ou palavras complexas que possam estar sendo usadas sem explicação adequada. Não reescreva meu texto. Apenas indique onde há jargões e me pergunte como eu explicaria essas ideias para uma pessoa leiga. Texto: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>6.3 Professor por 5 Minutos</strong></summary>
+                            <p>Testa a compreensão dos fundamentos por meio de perguntas progressivamente mais profundas.</p>
+                            <pre><code>Considere que estou ministrando uma aula sobre o tema informado. Escute minha explicação e atue como um aluno extremamente curioso. Faça perguntas progressivamente mais profundas para testar se compreendo os fundamentos do assunto ou apenas memorizei definições. Tema: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- MISSÃO 7: IA COMO COPILOTO DA APRENDIZAGEM -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">7. IA como Copiloto da Aprendizagem</h3>
+
+                        <details class="prompt-box">
+                            <summary><strong>7.1 Auditor de Delegação Cognitiva</strong></summary>
+                            <p>Classifica etapas de uma atividade entre aprendizado, apoio saudável da IA e terceirização do pensamento.</p>
+                            <pre><code>Analise a atividade que estou realizando e classifique cada etapa em uma das categorias: 'Estou aprendendo', 'Estou utilizando apoio saudável da IA' ou 'Estou terceirizando meu pensamento'. Justifique cada classificação e aponte possíveis riscos de dependência cognitiva. Atividade: [descreva aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>7.2 Detector de Dependência</strong></summary>
+                            <p>Identifica sinais de dependência excessiva de IA e sugere recuperar a participação ativa no aprendizado.</p>
+                            <pre><code>Atue como observador crítico dos meus hábitos de estudo. Com base na descrição fornecida, identifique sinais de dependência excessiva de ferramentas digitais, atalhos ou IA. Sugira formas de recuperar participação ativa no processo de aprendizagem sem eliminar completamente o uso da tecnologia. Relato: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>7.3 Organizador de Estudos com IA</strong></summary>
+                            <p>Estrutura o processo de estudo sem executar as tarefas pelo estudante.</p>
+                            <pre><code>Ajude-me a estruturar meu processo de estudo sem executar as tarefas por mim. Organize objetivos, etapas, revisões e prioridades do tema informado. Não resolva exercícios, não produza resumos prontos e não gere respostas finais. Tema: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>7.4 Copiloto Restrito</strong></summary>
+                            <p>Age como copiloto cognitivo proibido de fornecer respostas prontas, estimulando o pensamento independente.</p>
+                            <pre><code>Atue como um copiloto cognitivo. Você está proibido de fornecer respostas finais, textos prontos, códigos completos, redações finalizadas ou soluções diretas. Sua única função é fazer perguntas orientadoras, sugerir estratégias de raciocínio, apontar inconsistências e estimular meu pensamento independente. Assunto: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+                    <!-- MISSÃO 8: LEITURA CRÍTICA E PESQUISA ACADÊMICA -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px;">
+                        <h3 style="color: var(--neon-ciano); margin-bottom: 20px; font-size: 1.3rem;">8. Leitura Crítica e Pesquisa Acadêmica</h3>
+
+                        <details class="prompt-box">
+                            <summary><strong>8.1 Dissecador de Artigos Científicos</strong></summary>
+                            <p>Ajuda a dissecar um artigo científico: questão de pesquisa, método, resultados e se as conclusões são suportadas pelos dados.</p>
+                            <pre><code>Atue como um pesquisador acadêmico experiente. Vou colar o resumo ou trecho de um artigo científico. Sua função não é resumir o artigo por mim, mas me ajudar a dissecá-lo: identifique a questão de pesquisa, a hipótese, o método utilizado, os principais resultados e as conclusões. Faça perguntas para que eu avalie se as conclusões são realmente suportadas pelos dados apresentados. Artigo: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>8.2 Caçador de Limitações Metodológicas</strong></summary>
+                            <p>Identifica limitações metodológicas de um estudo científico de forma neutra, sem emitir opinião sobre os resultados.</p>
+                            <pre><code>Analise o trecho de um estudo científico que vou fornecer. Não critique o conteúdo nem dê opinião sobre os resultados. Sua tarefa é identificar apenas: o tamanho da amostra, o delineamento do estudo, possíveis viéses de seleção ou de medição, variáveis de confusão não controladas e limitações na generalização dos resultados. Aponte essas limitações de forma neutra e sugira perguntas que eu poderia fazer aos autores. Texto: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+
+                        <details class="prompt-box" style="margin-top: 16px;">
+                            <summary><strong>8.3 Comparador de Evidências</strong></summary>
+                            <p>Compara evidências de duas fontes sobre o mesmo tema, sem escolher lado, destacando convergências, divergências e lacunas.</p>
+                            <pre><code>Vou apresentar dois trechos de fontes diferentes sobre o mesmo tema. Não escolha um lado nem declare qual está certo. Compare as evidências apresentadas: quais dados cada fonte usa, quais metodologias sustentam cada afirmação, onde há convergência e onde há divergência, e quais informações estariam faltando para um juízo equilibrado. Fontes: [cole aqui]</code></pre>
+                            <button type="button" class="btn-copy" onclick="copiarTexto(this.previousElementSibling.textContent)">Copiar Prompt</button>
+                        </details>
+                    </div>
+
+                    <!-- Diretriz de Segurança Digital -->
+                    <div class="conceito-bloco" style="margin-bottom: 32px; border-left: 4px solid var(--neon-vermelho);">
+                        <p><strong>Diretriz de Segurança Digital:</strong> Nunca insira senhas, dados de identificação pessoal, códigos proprietários ou relatórios confidenciais de terceiros nas interfaces públicas de Inteligência Artificial. Mantenha suas interações estritamente focadas no escopo do desenvolvimento acadêmico.</p>
+                    </div>
+
+                    <!-- Referências Acadêmicas e Fontes Oficiais -->
+                    <details class="prompt-box" style="margin-bottom: 32px;">
+                        <summary><strong>Referências Acadêmicas e Fontes Oficiais</strong></summary>
+                        <div style="margin-top: 16px;">
+                            <p class="fonte">Analogia didática do projeto, ligada ao conceito de dificuldades desejáveis (<a href="https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf" target="_blank" rel="noopener noreferrer">Bjork &amp; Bjork, 2011</a>).</p>
+                            <p class="fonte">Fonte: <a href="https://cetic.br/pt/pesquisa/educacao/indicadores/" target="_blank" rel="noopener noreferrer">CETIC.br/NIC.br. <em>TIC Educação</em> – indicadores</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://www.paraty.rj.gov.br/conteudo/downloads/conselho-municipal-de-educacao/leis/PARECER-CNECEB-N%C2%BA-02.2022-NORMAS-SOBRE-COMPUTACAO-NA-EDUCACAO-BASICA-COMPLEMENTO-BNCC.pdf" target="_blank" rel="noopener noreferrer">BRASIL. CNE/CEB. <em>Parecer nº 2/2022</em>: Normas sobre Computação na Educação Básica – Complemento à BNCC (PDF)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://www.gov.br/mec/pt-br/cne/base-nacional-comum-curricular-bncc" target="_blank" rel="noopener noreferrer">BRASIL. MEC. <em>Base Nacional Comum Curricular</em> (Competência Geral 5 – Cultura Digital)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://unesdoc.unesco.org/ark:/48223/pf0000386694" target="_blank" rel="noopener noreferrer">UNESCO. <em>Guidance for generative AI in education and research</em>. 2023</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://www.gov.br/mec/pt-br/cne/2025/Fevereiro%202025/texto-referencia-inteligencia-artificial.pdf" target="_blank" rel="noopener noreferrer">BRASIL. MEC/CNE. <em>Texto-Referência: Inteligência Artificial na Educação</em>. 2025 (PDF)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://www.un.org/sustainabledevelopment/education/" target="_blank" rel="noopener noreferrer">ONU. <em>Objetivo de Desenvolvimento Sustentável 4 – Educação de Qualidade</em></a>.</p>
+                            <p class="fonte">Fonte: <a href="https://doi.org/10.3389/fpsyg.2026.1863931" target="_blank" rel="noopener noreferrer">ABDALLAH, N. et al. <em>Amplifier or substitute? A systematic review of generative AI's impact on higher-order cognitive skills among university students</em>. Frontiers in Psychology, 2026</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://doi.org/10.3390/bs16071150" target="_blank" rel="noopener noreferrer">WANG, G. et al. <em>Generative AI, Cognitive Offloading, and Learner Agency in Higher Education: A Scoping Review</em>. Behavioral Sciences, v. 16, n. 7, 2026</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://osf.io/en3p5" target="_blank" rel="noopener noreferrer">DENG, R. et al. <em>A Systematic Literature Review on the Pedagogical Implications and Impact of GenAI on Students' Critical Thinking</em>. Computers &amp; Education, 2025 (OSF)</a>.</p>
+                            <p class="fonte">Fonte: BOTO, C. O conceito de virtude como hábito em Aristóteles aplicado à educação e esforço cognitivo. <em>Revista de Filosofia e Educação</em>, 2024; FREIRE, P. <em>Pedagogia da Autonomia</em>. São Paulo: Paz e Terra, 1996.</p>
+                            <p class="fonte">Fonte: <a href="https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf" target="_blank" rel="noopener noreferrer">BJORK, E. L.; BJORK, R. A. <em>Making things hard on yourself, but in a good way: creating desirable difficulties to enhance learning</em>. Worth Publishers, 2011, p. 56–64 (PDF)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://arxiv.org/abs/2506.08872" target="_blank" rel="noopener noreferrer">KOSMYNA, N. et al. <em>Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task</em>. MIT Media Lab, 2025 (arXiv:2506.08872)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">VASWANI, A. et al. <em>Attention Is All You Need</em>. 2017 (arXiv:1706.03762)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">OPENAI. <em>GPT-4 Technical Report</em>. 2023 (arXiv:2303.08774)</a>.</p>
+                            <p class="fonte">Fonte: <a href="https://www.oecd.org/en/topics/artificial-intelligence-and-education-and-skills.html" target="_blank" rel="noopener noreferrer">OECD. <em>Digital Education Outlook 2026</em>: exploring the effective use of generative AI in education</a>.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+        <!-- Botão Voltar ao Início -->
+        <div class="mensagem-final">
+            <a href="/html/index.html" class="btn-link">
+                ⬅ Voltar ao Início
+            </a>
+        </div>
+
+    <footer class="main-footer">
+    <p>© 2026 Projeto de Extensão I - Ciência da Computação - Universidade Anhanguera</p>
+    <p>Criado por Diego Rodriguez</p>
+    <p id="visitor-line" style="font-size:0.7rem;opacity:0.6;margin-top:6px;">Acessos: <span id="visitor-count">-</span></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"
+    integrity="sha384-zYPBGXwO4633CABX/5Spf6emCKUJCfoOkhOMYyxMsatqQZPnDblmmOewfjsIVWCM"
+    crossorigin="anonymous"></script>
+    <script src="../js/metrics.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/prompts.js"></script>
+    <script>
+      fetch('/stats')
+        .then(r => r.json())
+        .then(d => {
+          const el = document.getElementById('visitor-count');
+          if (el) el.textContent = d.total_visitas ?? '-';
+        })
+        .catch(() => {});
+    </script>
+</body>
+</html>

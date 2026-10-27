@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem Está Aprendendo: Você ou a IA?</title>
+    <meta name="description"
+        content="Guia prático para usar IA como copiloto do seu estudo: ciência, filosofia, prompts prontos para copiar e todas as fontes abertas para você conferir.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+</head>
+
+<body>
+        <!-- pagina 3 -->
+    <!-- 10 – perfil -->
+    <section id="quiz" class="content-section">
+        <div class="container">
+            <h2>Perfil de Aprendizado: Qual é o Seu Modo?</h2>
+            <p>Antes de começar, vamos testar como você se sai em seis perguntas rápidas para você se ver no espelho:
+                Uso Passivo da IA (passivo), Modo em Transição ou Uso Ativo da IA (ativo). É uma autoavaliação
+                formativa, anônima e voluntária: não é um diagnóstico nem um
+                teste científico, e nenhuma resposta é armazenada ou enviada.</p>
+            <div id="quizContainer"></div>
+            <div id="quizResult"></div>
+            <div id="feedbackPerfilContainer"></div>
+        </div>
+    </section>
+    <!-- 11 – DASHBOARD -->
+    <section id="dashboard" class="content-section dark-bg">
+        <div class="container">
+            <h2>Como a Comunidade Está Usando IA</h2>
+            <p>Os gráficos abaixo apresentam resultados reais e anônimos dos visitantes que responderam ao questionário
+                neste site.
+                As estatísticas são atualizadas continuamente e ajudam a visualizar como a comunidade está utilizando a
+                Inteligência Artificial nos estudos.</p>
+
+            <div class="dashboard-content">
+                <div class="chart-wrapper">
+                    <canvas id="metricsChart" role="img"
+                        aria-label="Gráfico de pizza ilustrativo com a distribuição entre Uso Passivo da IA, Transição e Uso Ativo da IA"></canvas>
+                    <div id="totalParticipants" class="total-participants-badge">
+                        Total de participantes: <span id="totalCount">0</span>
+                    </div>
+                </div>
+                <!-- Transparência e Privacidade -->
+                <div class="transparencia-box">
+                    <p>🔒 Privacidade e Transparência</p>
+                    <p>Este painel é alimentado pelas respostas dos participantes do questionário.</p>
+                    <p>Para proteger a privacidade dos visitantes, nenhuma resposta individual é armazenada.</p>
+                    <p>O sistema registra apenas contagens agregadas dos perfis identificados pelo quiz.</p>
+                    <p>Nenhum nome, e-mail, endereço IP ou informação pessoal é coletado.</p>
+                    <p>O objetivo é exclusivamente educacional e estatístico.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Bloco de Transição para Página 4 -->
+        <div class="mensagem-final">
+            <p class="destaque">Seu perfil é apenas o começo. O que acontece exatamente com as conexões do seu cérebro quando você escolhe a muleta?</p>
+            <a href="/html/ciencia.html" class="btn-link">
+                Entender o Impacto no Meu Cérebro ➔
+            </a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+    <p>© 2026 Projeto de Extensão I - Ciência da Computação - Universidade Anhanguera</p>
+    <p>Criado por Diego Rodriguez</p>
+    <p id="visitor-line" style="font-size:0.7rem;opacity:0.6;margin-top:6px;">Acessos: <span id="visitor-count">-</span></p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"
+    integrity="sha384-zYPBGXwO4633CABX/5Spf6emCKUJCfoOkhOMYyxMsatqQZPnDblmmOewfjsIVWCM"
+    crossorigin="anonymous"></script>
+    <script src="../js/metrics.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/prompts.js"></script>
+    <script>
+      fetch('/stats')
+        .then(r => r.json())
+        .then(d => {
+          const el = document.getElementById('visitor-count');
+          if (el) el.textContent = d.total_visitas ?? '-';
+        })
+        .catch(() => {});
+    </script>
+</body>
+</html>
