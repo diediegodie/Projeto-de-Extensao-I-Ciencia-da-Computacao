@@ -43,13 +43,13 @@ A ideia é mitigar o *cognitive offloading* (delegação cognitiva passiva) e a 
 
 | Camada | Tecnologia |
 |--------|------------|
-| **Front-end** | HTML5 + CSS3 (responsivo, mobile-first) |
-| **Interatividade** | JavaScript vanilla |
+| **Front-end** | HTML5 + CSS3 (responsivo, mobile-first, **WCAG 2.1 AA**: ARIA, contraste, navegação teclado) |
+| **Interatividade** | JavaScript vanilla (Clipboard API, quiz logic, filtro do gráfico) |
 | **Back-end** | Python + Flask |
 | **Banco de dados** | SQLite (`db/quiz_stats.db`) com `timeout=10` para concorrência |
 | **Implantação** | **PythonAnywhere** — https://projetodeextensao1diego.pythonanywhere.com/ |
 | **Segurança de mídia** | Streaming privado (`/stream/audio`, `/stream/video`) + `controlsList="nodownload"` + `oncontextmenu` blocking |
-| **Validação** | Whitelist `PERFIS_VALIDOS` no endpoint `/update` |
+| **Validação** | Whitelists `PERFIS_VALIDOS` e `FAIXAS_VALIDAS` no endpoint `/update` |
 
 ---
 
@@ -60,11 +60,7 @@ A ideia é mitigar o *cognitive offloading* (delegação cognitiva passiva) e a 
 | **Produção** | https://projetodeextensao1diego.pythonanywhere.com/ |
 | **Estatísticas (JSON)** | https://projetodeextensao1diego.pythonanywhere.com/stats |
 | **Streaming de áudio** | https://projetodeextensao1diego.pythonanywhere.com/stream/audio/<arquivo> |
-| **Streaming de vídeo** | https://projetodextensao1diego.pythonanywhere.com/stream/video/<arquivo> |
-
----
-
-## Estrutura do repositório
+| **Streaming de vídeo** | https://projetodeextensao1diego.pythonanywhere.com/stream/video/<arquivo> |
 
 ---
 
@@ -76,14 +72,16 @@ site/
 ├── run.py              # Inicialização: cria .venv, instala dependências e roda o servidor
 ├── requirements.txt    # Dependências Python
 ├── db/
-│   └── quiz_stats.db   # Banco SQLite com métricas anônimas (visitas e perfis do quiz)
+│   └── quiz_stats.db   # Banco SQLite com métricas anônimas (visitas, perfis e faixas etárias)
 ├── html/               # Páginas HTML do site
 ├── js/
-│   ├── quiz.js         # Lógica de pontuação do quiz
+│   ├── quiz.js         # Lógica de pontuação do quiz e pergunta demográfica
+│   ├── metrics.js      # Gráfico de perfis com filtro por faixa etária
 │   └── prompts.js      # Cópia de prompts via Clipboard API
 ├── style/              # Folhas de estilo CSS
-├── assets/             # Imagens, vídeos e outros meios
-└── docs/               # Documentação de conteúdo (copy, layout, questionário)
+├── tests/
+│   └── test_backend.py # Testes unittest: migração, whitelists e /stats
+└── assets/             # Imagens, vídeos e outros meios
 ```
 
 ---
@@ -95,6 +93,9 @@ O site coleta apenas dados **anônimos e agregados**:
 - Número total de visitas à página inicial
 - Quantidade de participantes que concluíram o quiz
 - Distribuição por perfil de uso de IA (passivo / transição / ativo)
+- Distribuição por faixa etária (`ate_19`, `20_25`, `26_39`, `40_mais`), cruzada com o perfil
+
+A faixa etária é a primeira pergunta do quiz, exclusivamente demográfica, e não altera a pontuação. Respostas sem faixa válida são rejeitadas com HTTP 400.
 
 Não são coletados nomes, e-mails, IPs ou qualquer dado pessoal identificável. As informações ficam armazenadas localmente no banco `db/quiz_stats.db` e podem ser consultadas pelo endpoint `/stats`.
 
