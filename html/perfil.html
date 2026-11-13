@@ -20,10 +20,10 @@
     <section id="quiz" class="content-section">
         <div class="container">
             <h2>Perfil de Aprendizado: Qual é o Seu Modo?</h2>
-            <p>Antes de começar, vamos testar como você se sai em seis perguntas rápidas para você se ver no espelho:
-                Uso Passivo da IA (passivo), Modo em Transição ou Uso Ativo da IA (ativo). É uma autoavaliação
+            <p>Antes de começar, vamos testar como você se sai em sete perguntas rápidas para você se ver no espelho
+                (a primeira é apenas demográfica e não altera o resultado): Uso Passivo da IA (passivo), Modo em Transição ou Uso Ativo da IA (ativo). É uma autoavaliação
                 formativa, anônima e voluntária: não é um diagnóstico nem um
-                teste científico, e nenhuma resposta é armazenada ou enviada.</p>
+                teste científico. Nenhuma resposta individual é armazenada; apenas contagens agregadas são enviadas.</p>
             <div id="quizContainer"></div>
             <div id="quizResult"></div>
             <div id="feedbackPerfilContainer"></div>
@@ -40,8 +40,17 @@
 
             <div class="dashboard-content">
                 <div class="chart-wrapper">
+                    <div class="filtro-faixa" role="group" aria-labelledby="filtroFaixaTitulo">
+                        <span id="filtroFaixaTitulo" class="filtro-faixa-titulo">Filtrar por faixa etária:</span>
+                        <button type="button" class="filtro-faixa-btn is-active" data-faixa="todos" aria-pressed="true">Todos</button>
+                        <button type="button" class="filtro-faixa-btn" data-faixa="ate_19" aria-pressed="false">Até 19 anos</button>
+                        <button type="button" class="filtro-faixa-btn" data-faixa="20_25" aria-pressed="false">20 a 25 anos</button>
+                        <button type="button" class="filtro-faixa-btn" data-faixa="26_39" aria-pressed="false">26 a 39 anos</button>
+                        <button type="button" class="filtro-faixa-btn" data-faixa="40_mais" aria-pressed="false">40 anos ou mais</button>
+                    </div>
                     <canvas id="metricsChart" role="img"
                         aria-label="Gráfico de pizza ilustrativo com a distribuição entre Uso Passivo da IA, Transição e Uso Ativo da IA"></canvas>
+                    <p id="estadoVazioFaixa" class="estado-vazio-faixa" aria-live="polite" hidden></p>
                     <div id="totalParticipants" class="total-participants-badge">
                         Total de participantes: <span id="totalCount">0</span>
                     </div>

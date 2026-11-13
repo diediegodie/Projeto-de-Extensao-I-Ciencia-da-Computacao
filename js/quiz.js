@@ -6,6 +6,17 @@
 
 const quizPerguntas = [
   {
+    id: 0,
+    demografica: true,
+    pergunta: "Em que faixa etária você se encontra?",
+    alternativas: [
+      { texto: "Até 19 anos", faixa: "ate_19" },
+      { texto: "20 a 25 anos", faixa: "20_25" },
+      { texto: "26 a 39 anos", faixa: "26_39" },
+      { texto: "40 anos ou mais", faixa: "40_mais" }
+    ]
+  },
+  {
     id: 1,
     pergunta: "Ao receber uma tarefa escolar desafiadora, qual costuma ser sua primeira ação com a IA?",
     alternativas: [
@@ -164,12 +175,12 @@ const quizPerguntas = [
 ];
 
 // Helper functions for backend communication
-async function sendProfileToBackend(profile) {
+async function sendProfileToBackend(profile, faixaEtaria) {
   try {
     const response = await fetch('/update', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ profile })
+      body: JSON.stringify({ profile, faixa_etaria: faixaEtaria })
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -195,19 +206,14 @@ async function fetchStatsAndUpdateChart() {
 }
 
 function updateChartWithStats(stats) {
-  const chart = Chart.getChart("metricsChart");
-  if (chart && chart.data && chart.data.datasets[0]) {
-    chart.data.datasets[0].data = [
-      stats.total_passivo || 0,
-      stats.total_transicao || 0,
-      stats.total_ativo || 0
-    ];
-    chart.update();
+  if (typeof window.atualizarGraficoPerfil === 'function') {
+    window.atualizarGraficoPerfil(stats);
   }
 }
 
 let perguntaAtualIndex = 0;
 let respostasUsuario = [];
+let faixaEtariaSelecionada = null;
 
 // -------------------------------------------------
 // Renderiza o Quiz na tela passo a passo
@@ -379,8 +385,14 @@ function processarResposta() {
     return;
   }
 
-  const escolha = quizPerguntas[perguntaAtualIndex].alternativas[selecionadaIdx];
-  respostasUsuario.push(escolha);
+  const perguntaAtual = quizPerguntas[perguntaAtualIndex];
+  const escolha = perguntaAtual.alternativas[selecionadaIdx];
+  if (perguntaAtual.demografica) {
+    // Pergunta demográfica: não pontua nem entra na classificação dos perfis.
+    faixaEtariaSelecionada = escolha.faixa;
+  } else {
+    respostasUsuario.push(escolha);
+  }
   perguntaAtualIndex++;
 
   if (perguntaAtualIndex >= quizPerguntas.length) {
@@ -455,7 +467,7 @@ function exibirResultadoFinal() {
       backendProfile = "passivo";
     }
 
-    sendProfileToBackend(backendProfile)
+    sendProfileToBackend(backendProfile, faixaEtariaSelecionada)
       .then(() => {
         // After sending, fetch stats to update chart
         return fetchStatsAndUpdateChart();
@@ -484,6 +496,7 @@ function exibirResultadoFinal() {
 function reiniciarQuiz() {
   perguntaAtualIndex = 0;
   respostasUsuario = [];
+  faixaEtariaSelecionada = null;
   const resultadoTxt = document.getElementById("quizResult");
   if (resultadoTxt) {
     resultadoTxt.innerHTML = "";

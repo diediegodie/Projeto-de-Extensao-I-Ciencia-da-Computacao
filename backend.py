@@ -1,14 +1,19 @@
+import os
 import sqlite3
 from pathlib import Path
 from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__, static_folder=Path(__file__).parent, static_url_path="")
 
-DB_PATH = Path(__file__).parent / "db" / "quiz_stats.db"
+DB_PATH = Path(os.environ.get("QUIZ_DB_PATH") or Path(__file__).parent / "db" / "quiz_stats.db")
 MEDIA_PATH = Path(__file__).parent.parent / "media"
 
 # Whitelist de perfis válidos para validação no endpoint /update
 PERFIS_VALIDOS = ("passivo", "transicao", "ativo")
+# Whitelist de faixas etárias (autodeclaradas, sem data de nascimento nem identificador)
+FAIXAS_VALIDAS = ("ate_19", "20_25", "26_39", "40_mais")
+# Bucket de registros anteriores à coleta por faixa: contagens preservadas, idade nunca imputada
+FAIXA_HISTORICA = "nao_informada"
 
 
 def get_db():
@@ -28,7 +33,36 @@ def ensure_schema():
         conn.close()
 
 
+def ensure_faixa_schema():
+    """Cria a tabela de contagens por faixa etária e semeia o histórico (idempotente)."""
+    conn = get_db()
+    try:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS estatisticas_faixa (
+                faixa_etaria TEXT NOT NULL,
+                perfil TEXT NOT NULL,
+                total INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY (faixa_etaria, perfil)
+            )
+            """
+        )
+        # INSERT OR IGNORE: só semeia na primeira execução; nas seguintes não altera nada.
+        for perfil in PERFIS_VALIDOS:
+            conn.execute(
+                f"""
+                INSERT OR IGNORE INTO estatisticas_faixa (faixa_etaria, perfil, total)
+                SELECT ?, ?, total_{perfil} FROM estatisticas WHERE id = 1
+                """,
+                (FAIXA_HISTORICA, perfil),
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+
 ensure_schema()
+ensure_faixa_schema()
 
 
 @app.route("/")
@@ -68,6 +102,9 @@ def update():
     profile = data["profile"]
     if profile not in PERFIS_VALIDOS:
         return jsonify({"error": "Invalid profile"}), 400
+    faixa = data.get("faixa_etaria")
+    if faixa not in FAIXAS_VALIDAS:
+        return jsonify({"error": "Invalid faixa_etaria"}), 400
     conn = get_db()
     try:
         conn.execute(
@@ -80,6 +117,14 @@ def update():
             WHERE id = 1
         """,
             (profile, profile, profile),
+        )
+        conn.execute(
+            """
+            INSERT INTO estatisticas_faixa (faixa_etaria, perfil, total)
+            VALUES (?, ?, 1)
+            ON CONFLICT (faixa_etaria, perfil) DO UPDATE SET total = total + 1
+            """,
+            (faixa, profile),
         )
         conn.commit()
         return jsonify({"status": "ok"}), 200
@@ -96,6 +141,12 @@ def stats():
         row = conn.execute("SELECT * FROM estatisticas WHERE id = 1").fetchone()
         if row is None:
             return jsonify({"error": "No data"}), 404
+        por_faixa = {
+            faixa: {perfil: 0 for perfil in PERFIS_VALIDOS}
+            for faixa in (*FAIXAS_VALIDAS, FAIXA_HISTORICA)
+        }
+        for linha in conn.execute("SELECT faixa_etaria, perfil, total FROM estatisticas_faixa"):
+            por_faixa[linha["faixa_etaria"]][linha["perfil"]] = linha["total"]
         return (
             jsonify(
                 {
@@ -104,6 +155,7 @@ def stats():
                     "total_transicao": row["total_transicao"],
                     "total_ativo": row["total_ativo"],
                     "total_visitas": row["total_visitas"],
+                    "por_faixa_etaria": por_faixa,
                 }
             ),
             200,

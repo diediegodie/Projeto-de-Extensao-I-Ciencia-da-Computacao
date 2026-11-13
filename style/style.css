@@ -730,6 +730,67 @@ details.prompt-box summary {
     height: auto !important;
 }
 
+/* Filtro de faixa etária (WCAG 2.1 AA: alvo mínimo de 44px, foco visível, contraste) */
+.filtro-faixa {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 100%;
+}
+
+.filtro-faixa-titulo {
+    width: 100%;
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+}
+
+.filtro-faixa-btn {
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid #ffffff;
+    border-radius: 999px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.filtro-faixa-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.filtro-faixa-btn.is-active {
+    background: #ffffff;
+    color: #0c0c0e;
+    font-weight: 700;
+}
+
+.filtro-faixa-btn:focus-visible {
+    outline: 3px solid #00d2ff;
+    outline-offset: 2px;
+}
+
+.estado-vazio-faixa {
+    margin: 0;
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.estado-vazio-faixa[hidden] {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .filtro-faixa-btn {
+        flex: 1 1 calc(50% - 8px);
+    }
+}
+
 /* ==========================================================================
    DUPLO MECANISMO (AMPLIFICADOR VS. SUBSTITUTO)
    ========================================================================== */

@@ -58,24 +58,7 @@ async function renderMetricsChart() {
       const stats = await response.json();
       console.log('stats JSON:', JSON.stringify(stats));
 
-      const chartData = [
-        stats.total_passivo,
-        stats.total_transicao,
-        stats.total_ativo
-      ];
-      console.log('chartData:', chartData);
-      if (chartData.some(value => typeof value !== 'number' || !Number.isFinite(value))) {
-        throw new Error('Invalid chart data: expected finite numbers');
-      }
-
-      chart.data.datasets[0].data = chartData;
-      chart.update();
-
-      // Update total participants display
-      const totalCountElement = document.getElementById('totalCount');
-      if (totalCountElement) {
-        totalCountElement.textContent = stats.total_participantes;
-      }
+      aplicarEstatisticas(stats);
     } catch (error) {
       console.error('Failed to fetch or update stats chart; showing visual fallback data:', error);
     }
@@ -85,7 +68,86 @@ async function renderMetricsChart() {
   }
 }
 
+const PERFIS_ESTATISTICAS = ['passivo', 'transicao', 'ativo'];
+let filtroFaixaAtual = 'todos';
+let ultimoStatsRecebido = null;
+
+// "Todos" usa os totais históricos + novos; cada faixa usa o cruzamento por_faixa_etaria.
+function obterDadosFiltrados(stats, filtro) {
+  if (filtro === 'todos') {
+    return [stats.total_passivo, stats.total_transicao, stats.total_ativo];
+  }
+  const faixa = (stats.por_faixa_etaria && stats.por_faixa_etaria[filtro]) || {};
+  return PERFIS_ESTATISTICAS.map(perfil => faixa[perfil] || 0);
+}
+
+function atualizarEstadoFiltro(total) {
+  const canvas = document.getElementById('metricsChart');
+  const estado = document.getElementById('estadoVazioFaixa');
+  const botaoAtivo = document.querySelector(`.filtro-faixa-btn[data-faixa="${filtroFaixaAtual}"]`);
+  const nomeFiltro = botaoAtivo ? botaoAtivo.textContent.trim() : 'Todos';
+
+  if (canvas) {
+    canvas.setAttribute('aria-label',
+      `Gráfico de pizza com a distribuição entre Uso Passivo da IA, Transição e Uso Ativo da IA. Filtro: ${nomeFiltro}`);
+  }
+  if (estado) {
+    const vazio = filtroFaixaAtual !== 'todos' && total === 0;
+    estado.hidden = !vazio;
+    estado.textContent = vazio
+      ? 'Ainda não há respostas registradas para esta faixa etária — responda o quiz para contribuir'
+      : '';
+  }
+}
+
+function aplicarEstatisticas(stats) {
+  ultimoStatsRecebido = stats;
+  const chart = Chart.getChart('metricsChart');
+  if (!chart) {
+    return;
+  }
+
+  const dados = obterDadosFiltrados(stats, filtroFaixaAtual);
+  if (dados.some(value => typeof value !== 'number' || !Number.isFinite(value))) {
+    throw new Error('Invalid chart data: expected finite numbers');
+  }
+  const total = dados.reduce((soma, valor) => soma + valor, 0);
+
+  chart.data.datasets[0].data = dados;
+  chart.update();
+
+  const totalCountElement = document.getElementById('totalCount');
+  if (totalCountElement) {
+    totalCountElement.textContent = filtroFaixaAtual === 'todos' ? stats.total_participantes : total;
+  }
+  atualizarEstadoFiltro(total);
+}
+
+function selecionarFiltroFaixa(filtro) {
+  filtroFaixaAtual = filtro;
+  document.querySelectorAll('.filtro-faixa-btn').forEach(botao => {
+    const ativo = botao.dataset.faixa === filtro;
+    botao.setAttribute('aria-pressed', String(ativo));
+    botao.classList.toggle('is-active', ativo);
+  });
+  if (ultimoStatsRecebido) {
+    aplicarEstatisticas(ultimoStatsRecebido);
+  }
+}
+
+function bindFiltrosFaixa() {
+  document.querySelectorAll('.filtro-faixa-btn').forEach(botao => {
+    botao.addEventListener('click', () => selecionarFiltroFaixa(botao.dataset.faixa));
+  });
+}
+
+// Chamado pelo quiz.js após registrar uma resposta, para respeitar o filtro ativo.
+window.atualizarGraficoPerfil = function (stats) {
+  aplicarEstatisticas(stats);
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
+  bindFiltrosFaixa();
   try {
     await renderMetricsChart();
   } catch (error) {
